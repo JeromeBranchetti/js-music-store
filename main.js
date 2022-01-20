@@ -3,6 +3,7 @@ const showBtn = document.querySelector('#showGallery');
 showBtn.addEventListener('click', showGallery);
 
 
+
 function showGallery(){
     axios
     .get(endpoint)
@@ -25,6 +26,9 @@ function addObjFromResponse(response){
     console.log(diskObjList[0].genre);
     console.log(diskObjList[0].year);
     console.log(diskObjList.length);
+
+    //disable button
+    showBtn.setAttribute('disabled', '');
 
     for(let i = 0; i < diskObjList.length; i++){
         let newObj = diskObjList[i];
@@ -57,9 +61,13 @@ function addObjFromResponse(response){
         divCard.appendChild(img);
         divCard.appendChild(cardBody);
         
+        let divCardCol = document.createElement('div');
+        divCardCol.classList.add('col-5', 'm-2');
+        divCardCol.appendChild(divCard);
+        
         //Gallery div crolonna
         let gallery = document.getElementById('gallery');
-        gallery.appendChild(divCard);
+        gallery.appendChild(divCardCol);
 
     }
 
